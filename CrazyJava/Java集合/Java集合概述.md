@@ -1,30 +1,34 @@
-# 集合
+# collection (集合)
 
-集合只保存对象,数组既可以保存对象,也可以保存基本类型.
+collection只保存对象,数组既可以保存对象,也可以保存基本类型.
 
 所有的集合类都存放在Java.util包下.
 
-集合类主要是由Collection和Map这个两个接口派生而出.
+collection 有两个接口,分别是Collection和Map.
 
-## Collection接口
+![](https://github.com/HuangYiCheng1997/create-picture-url/blob/master/java/CrazyJava/JavaCollection.png?raw=true)
 
-Collection接口是List、Set 、Queue 接口的父接口.
+# Collection接口
 
-Collection接口里定义了如下操作集合元素的方法.
+**Collection接口是List、Set 、Queue 接口的父接口.**
+
+## Collection接口中定义的方法
 
 ```java
 boolean add(Object o) ; //添加元素,成功返回true;
 boolean addAll(Collection c) ;//把集合c添加到指定集合.
-void clear() ;//清除集合里所有元素
-boolean contains(Object o);//判断是否包含Object o
-boolean containsALL(Collection c);//判断集合是否包含集合C
-boolean isEmpty(); // 判断集合是否为空
-Iterator iterator(); //返回一个Iterator对象.
 boolean remove(Object o);//从集合中移除对象
 boolean removeAll(Collection c);//从集合中移除集合C中的对象
 boolean retainAll(Collection c);//删除集合中不属于集合C的对象
+void clear() ;//清除集合里所有元素
+
+boolean isEmpty(); // 判断集合是否为空
 int size();//返回集合中对象个数
+boolean contains(Object o);//判断是否包含Object o
+boolean containsALL(Collection c);//判断集合是否包含集合C
+
 Object[] toArray();//把集合转换成一个数组
+Iterator iterator(); //返回一个Iterator对象.
 ```
 
 ## 遍历集合
@@ -43,7 +47,7 @@ Object[] toArray();//把集合转换成一个数组
 for (Object obj:books){}
 ```
 
-### 调用Iterable接口的方法
+### 调用Iterable接口的forEach方法
 
 Iterable接口提供了一个forEach(Consumer action)默认方法.
 
@@ -94,27 +98,45 @@ Iterator it = books.iterator(); //调用集合方法生成一个迭代器对象
 it.forEachRemaining(obj->System.out.println(obj));
 ```
 
-## Java8新增的集合操作
 
-**① Predicate 与 removeIf**
 
-Predicate(断言)是个函数式接口.里面的唯一抽象方法是 boolean test(T t).
+# Map接口
 
-removeIf是Java8为Collection集合新增的方法.
+Map (mappings 映射),类似与Python的字典.
 
-它的参数是Predicate filter
-
-总而言之,重写Predicate的test方法,然后传递给removeIf 使用.
+**常用方法**
 
 ```java
-Collection books = new HashSet();
-books.add("Think in Java");
-books.add("Hello World");
-System.out.println(books);
-books.removeIf(ele->((String)ele).equals("Think in Java"));
-System.out.println(books);
+void clear();
+boolean containsKey(Object key);
+boolean containsValue(Object value);
+Set entrySet();//返回Map中包含的Key-Value对所组成的Set集合,集合中每个元素都是Map.Entry对象.
+Object get(Object key);
+boolean isEmpty();
+Set KeySet();
+Object put(Object key,Object value);
+void putAll(Map m);
+Object remove(Object key);
+boolean remove(Object key,Object value); //Java8 新增方法
+int size();
+Collection values();
 ```
 
-**② Stream操作**
+## Entry类
 
-...............................
+Entry类是Map的内部类,封装了一个key-value对.
+
+提供了下面三个方法
+
+```java
+Object getKey();
+Object getValue();
+Object setValue(V value);
+```
+
+## Java8 新增的方法
+
+```java
+//到时候用上再查吧..................
+```
+
