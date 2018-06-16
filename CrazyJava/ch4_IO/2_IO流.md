@@ -103,42 +103,40 @@ public class TestFile {
 }
 ```
 
-**操作节点流一般比较麻烦,不常用,我们来学点常用的**
-
 ## **使用处理流**
 
 **使用处理流包装节点流,让处理流执行输入输出,让节点流与底层IO设备、文件 交互.**
 
+### Buffered
 
-
-## 重点向标准输入/输出
-
-System类里提供了三个重定向标准输入\输出的方法.
+为输入流提供缓冲区，能提高很多IO的速度。你可以一次读取一大块的数据，而不需要每次从网络或者磁盘中一次读取一个字节。特别是在访问大量磁盘数据时，缓冲通常会让IO快上许多。 
 
 ```java
-static void setErr(PrintStream err);
-static void setIn(InputStream in);
-static void setOut(PrintStream out);
+    public static void main(String[] args) throws IOException {
+        File file = new File("C:\\Users\\hdr\\Desktop\\testOut.txt");
+        // 使用BufferedReader
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            String data ;
+            // 当执行br.read()就会读取内容，所以需要存储对象
+            while((data=br.readLine())!=null){
+                System.out.println(data);
+            }
+        }
+        // 使用BufferedInputStream
+        try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file))){
+            byte[] b = new byte[1024] ;
+            while(bis.read(b)!=-1){
+                System.out.print(new String(b));
+            }
+        }
+    }
 ```
 
-```java
-package File;
+### DataInput/OutputStream
 
-import java.io.*;
+从输入流中读取Java基本类型数据，而不必每次读取字节数据。 
 
-public class TestFile {
 
-	public static void main(String[] args) throws IOException {
-
-		// 获取文件路径
-		File oldFile = new File("C:\\Users\\Administrator\\Desktop\\区块链.txt");
-		PrintStream ps = new PrintStream(new FileOutputStream(oldFile));
-		System.setOut(ps);
-		System.out.println("helllllllllllllllllllllllllllllllll");
-	}
-
-}
-```
 
 ## Java虚拟机读写其他进程的数据
 

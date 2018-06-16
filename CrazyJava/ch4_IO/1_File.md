@@ -1,13 +1,13 @@
----
-title : 1_File
-categories :
-- Java基础
-thumbnail : /img/Java/JavaIO.png
----
-
 # File
 
-File类代表文件和目录
+Java IO API中的FIle类可以让你访问底层文件系统，通过File类，你可以做到以下几点：
+
+- 检测文件是否存在
+- 读取文件长度
+- 重命名或移动文件
+- 删除文件
+- 检测某个路径是文件还是目录
+- 读取目录中的文件列表
 
 File类可以创建 删除 重命名文件和目录,但是不能访问文件的内容.
 
@@ -46,6 +46,7 @@ static File[] listRoots();//WTF???????
 ## 其他
 
 ```java
+boolean renameTo(File newFile)
 boolean exists();
 boolean isFile();
 boolean isDirectory();
@@ -80,6 +81,18 @@ public class TestFile {
 
 }
 ```
+
+# Files
+
+Files类提供一些操作file的方法.
+
+```java
+Files.exists();
+Files.createDirectory();
+Files.copy();
+Files.move();
+```
+----
 
 # Path
 
@@ -132,15 +145,4 @@ System.out.println("path2 = " + path2);
 ```
 
 
-
-# Files
-
-Files类提供一些操作file的方法.
-
-```java
-Files.exists();
-Files.createDirectory();
-Files.copy();
-Files.move();
-```
 
